@@ -1,0 +1,9 @@
+#define KEYWORD 0
+#define LOGICAL_VALUE 1
+#define LOGICAL_CMP 2
+#define TYPE_DEF 3
+#define IDENTIFIER 4
+#define NUMBER 5
+#define DELIMETER 6
+#define OPERATOR 7
+#define CMP_OPERATOR 8

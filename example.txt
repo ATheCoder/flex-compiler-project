@@ -1,0 +1,14 @@
+{
+    if( a > b) then {
+        int h;
+    }
+    else {
+        p := a + p;
+        read(p);
+        print(a);
+        for a := 10 to 22 do {
+            print(a);
+            read(q);
+        }
+    }
+}
