@@ -134,7 +134,7 @@ void devide(){
     char *temp = getMemory(1);
     pushStack(temp);
     char *command = malloc(20 * sizeof(char));
-    printf(command, "(/, %s, %s, %s)\n", temp, first, second);
+    sprintf(command, "(/, %s, %s, %s)\n", temp, first, second);
     addToPB(command);
 }
 
@@ -178,8 +178,6 @@ char *add_symbol(char *lexeme) {
         exit(1);
     }
     char *memoryNumber = getMemory(1);
-    // char *memNumber = malloc(3 * sizeof(char));
-    // strcpy(memNumber, "10");
     sm_put(symbol_Table, lexeme, memoryNumber);
     return memoryNumber;
 }
@@ -199,8 +197,6 @@ char *get_symbol(char *lexeme) {
     }
     int numberOfBytesNeeded = sm_get(symbol_Table, lexeme, NULL, 0);
     if(numberOfBytesNeeded == 0){
-        // printf("\nVariable not declared: %s\n", lexeme);
-        // exit(1);
         return add_symbol(lexeme);
     }
     char *result = malloc(numberOfBytesNeeded);
