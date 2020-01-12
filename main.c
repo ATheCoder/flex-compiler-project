@@ -49,7 +49,6 @@ int loopBreakCount[100];
 int loopCount = 0;
 
 int pushStack(char *toBePushed){
-    printf("\nPushingStack: %s\n", toBePushed);
     char *newCopy = malloc((strlen(toBePushed) + 1) * sizeof(char));
     strcpy(newCopy, toBePushed);
     stack[top] = newCopy;
@@ -149,7 +148,6 @@ void save(){
 void save_jmp(){
     char *code = malloc(20 * sizeof(char));
     int pbC = atoi(popStack());
-    printf("PBC::::%d", pbC);
     sprintf(code, "(JUMPF, %s, , %d)\n", popStack(), pc + 1);
     pb[pbC] = code;
     char *secondCode = malloc(20 * sizeof(char));
@@ -159,10 +157,7 @@ void save_jmp(){
 
 void save_cjmp(int hasElse){
     char *code = malloc(20 * sizeof(char));
-    // printf("popStack:%s\n", popStack());
-    // printf("popStack:%s\n", popStack());
     int pbC = atoi(popStack());
-    printf("SaveCJUMP:::PBC::::%d\n", pbC);
     if(hasElse == 0)
         sprintf(code, "(JUMPF, %s, , %d)\n", popStack(), pc);
     else sprintf(code, "(JUMPF, %s, , %d)\n", popStack(), pc + 1);
@@ -339,7 +334,6 @@ int Q(){
     }
     if(strcmp(yytext, "(") == 0){
         match("(");
-        printf("HELLO");
         bexpr();
         match(")");
         return 0;
@@ -392,7 +386,6 @@ int rexpr(){
 }
 
 int operand(){
-    printf("\nOPERAND, IDTOKEN: %d\n", nToken);
     if(nToken == 1 || nToken == 5){
         char *literal = malloc((strlen(yytext) + 3) * sizeof(char));
         sprintf(literal, "\"%s\"", yytext);
@@ -576,7 +569,6 @@ int while_stmt(){
     match("while");
     bexpr();
     loopBoolStack[loopCount] = pc;
-    printf("PC: %d", pc);
     loopBreakCount[loopCount] = 0;
     save();
     loopCount++;
@@ -588,7 +580,6 @@ int while_stmt(){
         char *code = malloc(20 * sizeof(char));
         sprintf(code, "(JMP, , %d)\n", pc);
         int pbC = breakPCStack[loopCount][i];
-        printf("pbC: %d\n", pbC);
         pb[pbC] = code;
     }
     return 0;
